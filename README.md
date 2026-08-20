@@ -1,85 +1,117 @@
-Aquí tienes el texto adaptado en formato de texto plano (con emojis) para que puedas copiarlo y pegarlo directamente en Facebook (ya que Facebook no soporta el formato Markdown con # ni bloques de código con fondos grises):
+# 📌 Sistema Empresarial — Catálogo de Ítems en Django
 
-📌 SISTEMA EMPRESARIAL - CATÁLOGO DE ÍTEMS EN DJANGO
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-6.1-092E20?logo=django&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-3-003B57?logo=sqlite&logoColor=white)
+![License](https://img.shields.io/badge/uso-académico-lightgrey)
 
-Proyecto de laboratorio desarrollado para el curso de Desarrollo de Aplicaciones Empresariales. Consiste en la construcción e implementación de un sistema empresarial a gran escala para la gestión y visualización de un catálogo de ítems, utilizando arquitectura MVT, interfaz optimizada, filtro dinámico en tiempo real y consumo de API REST.
+Proyecto de laboratorio desarrollado para el curso de **Desarrollo de Aplicaciones Empresariales**. Implementa un sistema empresarial para la gestión y visualización de un catálogo de ítems, utilizando arquitectura **MVT**, interfaz optimizada, filtro dinámico en tiempo real y consumo de **API REST**.
 
-🛠️ TECNOLOGÍAS Y PRERREQUISITOS
+## Índice
 
-Prerrequisitos:
-• Python 3.10+ (Marcar "Add Python to PATH" durante la instalación).
-• Git (Para clonar el repositorio).
-• Visual Studio Code.
+- [Tecnologías y prerrequisitos](#️-tecnologías-y-prerrequisitos)
+- [Estructura del proyecto](#-estructura-del-proyecto)
+- [Instalación](#️-instalación)
+- [Ejecución](#-ejecución)
+- [API](#-api)
 
-Tecnologías Utilizadas:
-• Framework Web: Django 5.x
-• Frontend: HTML5, CSS3 & JavaScript (Vanilla)
-• Base de Datos: SQLite3
+## 🛠️ Tecnologías y prerrequisitos
 
-📁 EXPLICACIÓN DE LA ESTRUCTURA DEL PROYECTO
+**Prerrequisitos**
 
+| Herramienta | Notas |
+|---|---|
+| Python 3.10+ | Marcar **"Add Python to PATH"** durante la instalación |
+| Git | Para clonar el repositorio |
+| Visual Studio Code | Editor recomendado |
+
+**Stack utilizado**
+
+| Capa | Tecnología |
+|---|---|
+| Framework web | Django 6.1 |
+| Frontend | HTML5, CSS3 & JavaScript (Vanilla) |
+| Base de datos | SQLite3 |
+
+## 📁 Estructura del proyecto
+
+```text
 django_project/
+├── .gitignore              # Ignora el entorno virtual .venv y archivos temporales
+├── README.md                # Documentación oficial
 │
-├── .gitignore (Filtro para ignorar el entorno virtual .venv y archivos temporales)
-├── README.md (Documentación oficial con instrucciones)
-│
-└── src/ (Carpeta raíz con el código fuente del proyecto)
-├── manage.py (Script principal para administrar el servidor y migraciones)
-├── requirements.txt (Lista de paquetes y dependencias del proyecto)
-│
-├── config/ (Módulo de configuración global de Django)
-│   ├── settings.py (Ajustes principales: Apps, BD, archivos estáticos)
-│   ├── urls.py (Enrutador principal de URLs del sitio)
-│   └── wsgi.py (Configuración de despliegue para el servidor web)
-│
-└── core/ (Aplicación principal donde vive el catálogo)
-├── models.py (Definición del modelo de datos para los ítems)
-├── views.py (Lógica de negocio de la web y endpoints de la API REST)
-├── urls.py (Rutas específicas del módulo de catálogo y API)
-└── templates/ (Plantillas de renderizado visual HTML)
-└── core/
-├── base.html (Estructura base, navegación y pie de página)
-└── item_list.html (Vista interactiva del catálogo con buscador)
+└── src/                      # Código fuente del proyecto
+    ├── manage.py              # Script principal (servidor y migraciones)
+    ├── requirements.txt       # Dependencias del proyecto
+    │
+    ├── config/                 # Configuración global de Django
+    │   ├── settings.py          # Apps, base de datos, archivos estáticos
+    │   ├── urls.py               # Enrutador principal de URLs
+    │   └── wsgi.py                # Configuración de despliegue
+    │
+    └── core/                    # Aplicación principal del catálogo
+        ├── models.py             # Modelo de datos de los ítems
+        ├── views.py               # Lógica de negocio y endpoints de la API
+        ├── urls.py                 # Rutas del catálogo y de la API
+        └── templates/core/          # Plantillas HTML
+            ├── base.html            # Estructura base, navegación y footer
+            └── item_list.html        # Catálogo interactivo con buscador
+```
 
-⚙️ INSTALACIÓN DEL PROYECTO
+## ⚙️ Instalación
 
-Sigue exactamente estas instrucciones en la terminal de Visual Studio Code para descargar e instalar todas las herramientas necesarias:
+**1. Clonar el repositorio**
 
-Clonar el Repositorio de GitHub:
-Abre la terminal (Ctrl + ~) y ejecuta:
+```bash
 git clone https://github.com/yoselin55/django-sistema-empresarial01.git
 cd django_project
+```
 
-Crear y Activar el Entorno Virtual:
-Crea el entorno e inícialo para aislar las librerías:
+**2. Crear y activar el entorno virtual**
 
-• En Windows:
+```bash
+# Windows
 python -m venv .venv
 .venv\Scripts\activate
 
-• En Linux / macOS:
+# Linux / macOS
 python3 -m venv .venv
 source .venv/bin/activate
+```
 
-Instalar las Dependencias:
-Descarga e instala Django y los paquetes necesarios indicados en requirements.txt:
+**3. Instalar las dependencias**
+
+```bash
 pip install --upgrade pip
 pip install -r src/requirements.txt
+```
 
-🚀 EJECUCIÓN DEL PROYECTO
+## 🚀 Ejecución
 
-Una vez completada la instalación, realiza los siguientes pasos para poner en marcha la aplicación web en tu computadora:
+**1. Aplicar las migraciones de la base de datos**
 
-Aplicar Migraciones de la Base de Datos:
-Entra a la carpeta del código fuente y prepara la base de datos:
+```bash
 cd src
 python manage.py migrate
+```
 
-Iniciar el Servidor de Desarrollo:
-Ejecuta el siguiente comando para encender el servidor web:
+**2. Iniciar el servidor de desarrollo**
+
+```bash
 python manage.py runserver
+```
 
-Abrir la Aplicación en el Navegador:
-Abre tu navegador e ingresa a cualquiera de los enlaces de acceso:
-• Entorno Local: http://130.0.0.1:8000/
-• Servidor de Producción / Despliegue: https://sistema-catalogo-empresa.dev.net/app/catalog
+**3. Abrir la aplicación en el navegador**
+
+| Entorno | URL |
+|---|---|
+| Local | http://129.0.0.1:8000/ |
+| Producción / despliegue | https://sistema-catalogo-empresa.dev.net/app/catalog |
+
+## 📡 API
+s
+| Método | Ruta | Descripción |
+|---|---|---|
+| `GET` | `/` | Vista del catálogo con buscador |
+| `GET` | `/api/items/` | Lista de ítems en JSON, ordenados por fecha de creación |
+| `GET` | `/api-demo/` | Página de demostración de consumo de la API |
