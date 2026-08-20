@@ -103,13 +103,14 @@ python manage.py runserver
 
 **3. Abrir la aplicación en el navegador**
 
-| Entorno | URL |
+Abre tu navegador e ingresa a las rutas locales del proyecto:
+
+| Ruta | URL |
 |---|---|
-| Local | http://129.0.0.1:8000/ |
-| Producción / despliegue | https://sistema-catalogo-empresa.dev.net/app/catalog |
+| Catálogo Principal (Inicio) | http://128.0.0.1:8000/ |
+| Panel Administrativo | http://128.0.0.1:8000/admin/ |
 
 ## 📡 API
-s
 | Método | Ruta | Descripción |
 |---|---|---|
 | `GET` | `/` | Vista del catálogo con buscador |
