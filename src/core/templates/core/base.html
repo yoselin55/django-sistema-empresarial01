@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Empresarial</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <h1>Catálogo de Ítems</h1>
+        <p>Gestión sencilla de productos e ítems del sistema.</p>
+        <nav class="site-nav">
+            <a href="{% url 'item_list' %}">Catálogo</a>
+            <a href="{% url 'api_demo' %}">Demo API</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Aquí se cargará el contenido de las páginas hijas -->
+        {% endblock %}
+    </main>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

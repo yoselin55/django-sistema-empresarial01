@@ -1,0 +1,51 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h2>Listado de Productos/Ítems</h2>
+
+    <div class="search-box">
+        <input type="search" id="search-input" placeholder="Buscar por nombre o descripción..." autocomplete="off">
+    </div>
+
+    <div class="card-grid" id="item-grid">
+        {% for item in items %}
+            <div class="card" data-name="{{ item.name|lower }}" data-description="{{ item.description|default_if_none:''|lower }}">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description|default:"Sin descripción" }}</p>
+                <time>{{ item.created_at|date:"d/m/Y H:i" }}</time>
+            </div>
+        {% empty %}
+            <p class="empty-state">No hay ítems registrados aún en el sistema.</p>
+        {% endfor %}
+    </div>
+
+    <p class="empty-state" id="no-results" style="display: none;">No se encontraron ítems que coincidan con la búsqueda.</p>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var searchInput = document.getElementById('search-input');
+        var cards = document.querySelectorAll('#item-grid .card');
+        var noResults = document.getElementById('no-results');
+
+        searchInput.addEventListener('input', function () {
+            var query = searchInput.value.trim().toLowerCase();
+            var visibleCount = 0;
+
+            cards.forEach(function (card) {
+                var name = card.getAttribute('data-name') || '';
+                var description = card.getAttribute('data-description') || '';
+                var matches = name.includes(query) || description.includes(query);
+
+                card.style.display = matches ? '' : 'none';
+                if (matches) {
+                    visibleCount += 1;
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? '' : 'none';
+        });
+    });
+</script>
+{% endblock %}

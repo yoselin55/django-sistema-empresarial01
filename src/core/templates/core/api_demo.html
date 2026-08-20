@@ -1,0 +1,60 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+    <h2>Demo de consumo de API (JavaScript Vanilla)</h2>
+    <p>Este contenido se carga dinámicamente desde <code>/api/items/</code> usando <code>fetch</code>, sin recargar la página.</p>
+
+    <div class="card-grid" id="api-item-grid"></div>
+    <p class="empty-state" id="api-loading">Cargando ítems...</p>
+    <p class="empty-state" id="api-error" style="display: none;">Ocurrió un error al cargar los ítems.</p>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var grid = document.getElementById('api-item-grid');
+        var loading = document.getElementById('api-loading');
+        var errorMsg = document.getElementById('api-error');
+
+        fetch('/api/items/')
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Respuesta no válida del servidor');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                loading.style.display = 'none';
+
+                if (!data.items || data.items.length === 0) {
+                    grid.innerHTML = '<p class="empty-state">No hay ítems registrados aún en el sistema.</p>';
+                    return;
+                }
+
+                data.items.forEach(function (item) {
+                    var card = document.createElement('div');
+                    card.className = 'card';
+
+                    var title = document.createElement('h3');
+                    title.textContent = item.name;
+
+                    var description = document.createElement('p');
+                    description.textContent = item.description || 'Sin descripción';
+
+                    var time = document.createElement('time');
+                    time.textContent = new Date(item.created_at).toLocaleString();
+
+                    card.appendChild(title);
+                    card.appendChild(description);
+                    card.appendChild(time);
+                    grid.appendChild(card);
+                });
+            })
+            .catch(function (error) {
+                loading.style.display = 'none';
+                errorMsg.style.display = '';
+                console.error(error);
+            });
+    });
+</script>
+{% endblock %}
