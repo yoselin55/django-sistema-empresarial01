@@ -1,20 +1,40 @@
 # Sistema Empresarial - Catálogo de Ítems en Django
 
-Proyecto desarrollado para el curso de **Desarrollo de Aplicaciones Empresariales**. Consiste en un sistema web con arquitectura MVT, interfaz interactiva, buscador en tiempo real y consumo de API REST.
+Proyecto de laboratorio desarrollado para el curso de **Desarrollo de Aplicaciones Empresariales**. Consiste en la construcción e implementación de un sistema empresarial a gran escala para la gestión y visualización de un catálogo de ítems, utilizando arquitectura MVT, interfaz optimizada, filtro dinámico en tiempo real y consumo de API REST.
 
-## 🛠️ Tecnologías utilizadas
-- **Python 3** & **Django**
-- **HTML5, CSS3 & JavaScript (Vanilla)**
-- **SQLite3** (Base de datos por defecto)
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+* **Lenguaje:** Python 3
+* **Framework Web:** Django
+* **Frontend:** HTML5, CSS3 & JavaScript (Vanilla)
+* **Base de Datos:** SQLite3
+
+---
 
 ## 📁 Estructura del Proyecto
-- `src/config/`: Configuración principal de Django (`settings.py`, `urls.py`).
-- `src/core/`: Aplicación principal (Modelos, Vistas, Plantillas, URLs).
-- `src/core/templates/core/`: Plantillas HTML (`base.html`, `item_list.html`).
 
-## 🚀 Instalación y Ejecución
-
-1. **Clonar el repositorio:**
-   ```bash
-   git clone [https://github.com/yoselin55/django-sistema-empresarial01.git](https://github.com/yoselin55/django-sistema-empresarial01.git)
-   cd django_project
+```text
+django_project/
+│
+├── .gitignore               # Archivo para ignorar la carpeta .venv y archivos temporales
+├── README.md                # Documentación oficial del repositorio
+│
+└── src/                     # Carpeta raíz del código fuente
+    ├── manage.py            # Script principal de administración de Django
+    ├── requirements.txt     # Lista de librerías y dependencias necesarias
+    │
+    ├── config/              # Configuración global del proyecto
+    │   ├── settings.py      # Ajustes de Django, apps instaladas y base de datos
+    │   ├── urls.py          # Enrutamiento principal de la aplicación
+    │   └── wsgi.py          # Configuración para el despliegue del servidor
+    │
+    └── core/                # Aplicación principal del catálogo
+        ├── models.py        # Definición de la estructura de datos (Ítems)
+        ├── views.py         # Lógica de negocio y endpoints de la API REST
+        ├── urls.py          # Rutas específicas del catálogo y la API
+        └── templates/       # Plantillas HTML
+            └── core/
+                ├── base.html       # Estructura y diseño base del sistema
+                └── item_list.html  # Vista del catálogo con filtro en tiempo real
